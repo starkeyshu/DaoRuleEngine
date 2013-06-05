@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule-execution-set>
+   <name>RuleExecutionSet1</name>
+   <description>Rule Execution Set</description>
+
+   <synonymn name="customer" class="org.starkeylab.dre.ruleengine.model.Customer" />
+
+    <!--
+      If the credit limit of the customer is greater than the amount of the
+      invoice and the status of the invoice is "unpaid" then
+      decrement the credit limit with the amount of the invoice and
+      set the status of the invoice to "paid".
+    -->
+   <rule name="Rule1" description="credit limit control rule" >
+	<if leftTerm="customer.getCreditLimit" op="&gt;" rightTerm="org.starkeylab.dre.ruleengine.model.Invoice.getAmount" />
+	<if leftTerm="org.starkeylab.dre.ruleengine.model.Invoice.getStatus" op="=" rightTerm="unpaid" />
+	<then method="customer.decrementCreditLimit" arg1="org.starkeylab.dre.ruleengine.model.Invoice.getAmount" />
+	<then method="org.starkeylab.dre.ruleengine.model.Invoice.setStatus" arg1="paid" />
+   </rule>
+</rule-execution-set>

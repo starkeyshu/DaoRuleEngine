@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule-execution-set>
+   <name>RuleExecutionSet1</name>
+   <description>Rule Execution Set</description>
+
+   <synonymn name="prop" class="org.starkeylab.dre.ruleengine.Term" />
+
+    <!--
+      if Socrate is human then Socrate is mortal
+    -->
+   <rule name="Rule2" description="if Socrate is human then Socrate is mortal" >
+	<if leftTerm="Socrate is human" />
+	<then method="prop.setTerm" arg1="Socrate is mortal" />
+   </rule>
+
+</rule-execution-set>
