@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule-execution-set>
+   <name>RuleExecutionSet1</name>
+   <description>Rule Execution Set</description>
+   
+   <synonymn name="defaultContext" class="org.starkeylab.dre.ruleengine.util.DefaultContext" />
+   <synonymn name="customer" class="org.starkeylab.dre.ruleengine.model.Customer" />
+   <synonymn name="accountControl" class="org.starkeylab.dre.ruleengine.model.AccountControl" />
+
+   <rule code="cs001" name="vip customer segmentation" description="vip customer segmentation" >
+	<if leftTerm="customer.isVIP" op="=" rightTerm="true" />
+	<then method="defaultContext.doNothing"/>
+   </rule>
+   
+   <rule name="young customer treatment" depends="cs001">
+	<if leftTerm="customer.getAge" op="&lt;" rightTerm="19" />
+	<then method="accountControl.provideTeenagerPackage"/>
+   </rule>
+</rule-execution-set>

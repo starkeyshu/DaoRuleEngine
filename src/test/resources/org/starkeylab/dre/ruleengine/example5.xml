@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule-execution-set>
+   <name>RuleExecutionSet1</name>
+   <description>Rule Execution Set</description>
+
+    <!--
+      If the credit limit of the customer is greater or equals to the amount of the
+      invoice and the status of the invoice is "unpaid" then
+      decrement the credit limit with the amount of the invoice and
+      set the status of the invoice to "paid".
+    -->
+   <rule name="Rule1" description="credit limit control rule" >
+	<if leftTerm="creditLimitControl.getText" op="&gt;=" rightTerm="amountControl.getText" />
+	<if leftTerm="statusControl.getStatus" op="=" rightTerm="unpaid" />
+	<then method="creditLimitControl.decrementCreditLimit" arg1="amountControl.getText" />
+	<then method="statusControl.setStatus" arg1="paid" />
+   </rule>
+<!--
+   <rule name="Rule1" description="credit limit control rule" >
+	<if leftTerm="creditLimitControl.getCreditLimit" op="&gt;=" rightTerm="amountControl.getAmount" />
+	<if leftTerm="statusControl.getStatus" op="=" rightTerm="unpaid" />
+	<then method="creditLimitControl.decrementCreditLimit" arg1="amountControl.getAmount" />
+	<then method="statusControl.setStatus" arg1="paid" />
+   </rule>
+-->
+
+</rule-execution-set>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule-execution-set>
+   <name>RuleExecutionSet1</name>
+   <description>Rule Execution Set</description>
+
+   <synonymn name="prop" class="org.starkeylab.dre.ruleengine.Term" />
+
+    <!--
+      if :X is human then :X is mortal
+    -->
+   <rule name="Rule1" description="if :X is human then :X is mortal" >
+	<if leftTerm=":X" op="=" rightTerm="is human" />
+	<then method="prop.setTerm" arg1=":X" arg2="is mortal" />
+   </rule>
+
+</rule-execution-set>
